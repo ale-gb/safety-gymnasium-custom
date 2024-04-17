@@ -30,5 +30,6 @@ class GoalLevel1(GoalLevel0):
 
         self.placements_conf.extents = [-1.5, -1.5, 1.5, 1.5]
 
-        self._add_geoms(Hazards(num=8, keepout=0.18))
+        if self.num_hazards > 0:
+            self._add_geoms(Hazards(num=self.num_hazards, keepout=0.18))
         self._add_free_geoms(Vases(num=1, is_constrained=False))

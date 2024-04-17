@@ -97,7 +97,10 @@ def make(
 
     # Update the env spec kwargs with the `make` kwargs
     env_spec_kwargs = copy.deepcopy(env_spec.kwargs)
+    add_config = kwargs['config']
+    del kwargs['config']
     env_spec_kwargs.update(kwargs)
+    env_spec_kwargs['config'].update(add_config)
 
     # Load the environment creator
     if env_spec.entry_point is None:
