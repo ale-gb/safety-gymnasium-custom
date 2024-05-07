@@ -18,6 +18,8 @@ from safety_gymnasium.assets.free_geoms import Vases
 from safety_gymnasium.assets.geoms import Hazards
 from safety_gymnasium.tasks.safe_navigation.goal.goal_level0 import GoalLevel0
 
+import numpy as np
+
 
 class GoalLevel1(GoalLevel0):
     """An agent must navigate to a goal while avoiding hazards.
@@ -30,6 +32,7 @@ class GoalLevel1(GoalLevel0):
 
         self.placements_conf.extents = [-1.5, -1.5, 1.5, 1.5]
 
-        if self.num_hazards > 0:
-            self._add_geoms(Hazards(num=self.num_hazards, keepout=0.18))
+        # if self.num_hazards > 0:
+        #     self._add_geoms(Hazards(num=self.num_hazards, keepout=0.18))
+        self._add_geoms(Hazards(num=1, locations=[np.array([0., 0.])], size=0.6, keepout=0.18))
         self._add_free_geoms(Vases(num=1, is_constrained=False))

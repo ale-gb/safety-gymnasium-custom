@@ -364,7 +364,8 @@ class BaseTask(Underlying):  # pylint: disable=too-many-instance-attributes,too-
         self.world_info.world_config_dict['geoms']['goal']['pos'][:2] = self.world_info.layout[
             'goal'
         ]
-        self._set_goal(self.world_info.layout['goal'])
+        # self._set_goal(self.world_info.layout['goal'])
+        self._set_goal(np.array([1., 1.]))
         mujoco.mj_forward(self.model, self.data)  # pylint: disable=no-member
 
     def build_staged_goal_position(self) -> None:

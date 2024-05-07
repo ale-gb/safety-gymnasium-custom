@@ -298,6 +298,7 @@ class Underlying(abc.ABC):  # pylint: disable=too-many-instance-attributes
             )
         # Sample object positions
         self.world_info.layout = self.random_generator.build_layout()
+        self.world_info.layout['agent'] = np.array([-1., -1.])
 
         # Build the underlying physics world
         self.world_info.world_config_dict = self._build_world_config(self.world_info.layout)
