@@ -27,6 +27,11 @@ class GoalLevel0(BaseTask):
         self.placements_conf.extents = [-1, -1, 1, 1]
 
         self._add_geoms(Goal(keepout=0.305))
+        if self.fixed_goals_and_obstacles:
+            if self.hard_config:
+                self.goal.locations = [(0.44586891,  1.23200731)]
+            else:
+                self.goal.locations = [(0.69046519, -0.85283106)]
 
         self.last_dist_goal = None
 
