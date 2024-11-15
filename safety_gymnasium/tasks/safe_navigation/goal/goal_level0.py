@@ -27,6 +27,8 @@ class GoalLevel0(BaseTask):
         self.placements_conf.extents = [-1, -1, 1, 1]
 
         self._add_geoms(Goal(keepout=0.305))
+        self.goal.reward_goal = self.goal_reached_reward
+        self.reward_conf.reward_clip = max(self.reward_conf.reward_clip, self.goal.reward_goal + 1)
         if self.fixed_goals_and_obstacles:
             if self.hard_config:
                 self.goal.locations = [(0.44586891,  1.23200731)]
@@ -40,7 +42,11 @@ class GoalLevel0(BaseTask):
         # pylint: disable=no-member
         reward = 0.0
         dist_goal = self.dist_goal()
-        reward += (self.last_dist_goal - dist_goal) * self.goal.reward_distance
+        if not self.reward_proportional_to_distance:
+            reward += (self.last_dist_goal - dist_goal) * self.goal.reward_distance
+        else:
+            max_distance = 5.
+            reward -= (dist_goal / max_distance) * self.goal.reward_distance
         self.last_dist_goal = dist_goal
 
         if self.goal_achieved:

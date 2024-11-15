@@ -221,6 +221,8 @@ class Underlying(abc.ABC):  # pylint: disable=too-many-instance-attributes
         self.observation_flatten = True  # Flatten observation into a vector
         self.fixed_goals_and_obstacles = False
         self.hard_config = False
+        self.goal_reached_reward = 1.0
+        self.reward_proportional_to_distance = False
         self._parse(config)
         self.agent = None
         self.action_noise: float = (
