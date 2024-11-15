@@ -223,6 +223,7 @@ class Underlying(abc.ABC):  # pylint: disable=too-many-instance-attributes
         self.hard_config = False
         self.goal_reached_reward = 1.0
         self.reward_proportional_to_distance = False
+        self.cost_factor_in_reward = 0.
         self._parse(config)
         self.agent = None
         self.action_noise: float = (

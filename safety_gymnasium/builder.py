@@ -246,6 +246,8 @@ class Builder(gymnasium.Env, gymnasium.utils.EzPickle):
 
         if self.render_parameters.mode == 'human':
             self.render()
+
+        reward -= cost * self.task.cost_factor_in_reward
         return self.task.obs(), reward, cost, self.terminated, self.truncated, info
 
     def _reward(self) -> float:

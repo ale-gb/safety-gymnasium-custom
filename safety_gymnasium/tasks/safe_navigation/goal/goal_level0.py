@@ -28,7 +28,9 @@ class GoalLevel0(BaseTask):
 
         self._add_geoms(Goal(keepout=0.305))
         self.goal.reward_goal = self.goal_reached_reward
-        self.reward_conf.reward_clip = max(self.reward_conf.reward_clip, self.goal.reward_goal + 1)
+        self.reward_conf.reward_clip = max(
+            self.reward_conf.reward_clip, self.goal.reward_goal + 1, self.cost_factor_in_reward + 1
+        )
         if self.fixed_goals_and_obstacles:
             if self.hard_config:
                 self.goal.locations = [(0.44586891,  1.23200731)]
